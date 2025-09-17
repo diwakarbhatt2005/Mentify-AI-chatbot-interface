@@ -523,40 +523,40 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ isDarkMode, selectedModel
                       <div
                         key={buddy.id}
                         onClick={() => handleModelSelect(buddy)}
-                        className={`relative p-3 rounded-lg cursor-pointer transition-all duration-200 group ${
+                        className={`relative p-2 rounded-xl cursor-pointer transition-all duration-200 group shadow-sm ${
                           isDarkMode 
                             ? 'hover:bg-gray-700/80' 
                             : 'hover:bg-gray-50/80'
                         } ${isSelected ? (isDarkMode ? 'bg-blue-600/20' : 'bg-blue-50/80') : ''}`}
                       >
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 ${
+                          <div className="flex items-center space-x-2">
+                            <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-200 ${
                               isDarkMode ? 'bg-gray-700 group-hover:bg-gray-600' : 'bg-gray-100 group-hover:bg-white'
                             }`}>
                               {buddy.isLocked ? (
-                                <Lock size={14} className="text-gray-400" />
+                                <Lock size={12} className="text-gray-400" />
                               ) : (
-                                <IconComponent size={14} className={buddy.color} />
+                                <IconComponent size={12} className={buddy.color} />
                               )}
                             </div>
                             <div className="flex-1">
-                              <div className={`font-semibold text-sm flex items-center space-x-2 ${
+                              <div className={`font-semibold text-xs flex items-center space-x-2 ${
                                 isDarkMode ? 'text-white' : 'text-gray-900'
                               }`}>
                                 <span>{buddy.name}</span>
                                 {isSelected && !buddy.isLocked && (
-                                  <Check size={12} className="text-blue-500" />
+                                  <Check size={10} className="text-blue-500" />
                                 )}
                               </div>
-                              <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                              <div className={`text-[10px] ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                                 {buddy.description}
                               </div>
                             </div>
                           </div>
                           
                           {buddy.isLocked && (
-                            <div className={`text-xs px-2 py-1 rounded-full ${
+                            <div className={`text-[10px] px-2 py-1 rounded-full ${
                               isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-600'
                             }`}>
                               {buddy.price}
@@ -671,40 +671,42 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ isDarkMode, selectedModel
                 How can I help you today?
               </h1>
               <p className={`text-sm sm:text-base mb-6 text-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                I'm {selectedModel}, your AI assistant. I can help with writing, analysis, coding, creative tasks, and much more.
+               "I'm {selectedModel}, trained to assist, designed to impress."
               </p>
             </div>
             
             {/* Suggestion Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-sm mx-auto mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-[700px] mx-auto mb-6">
               {suggestions.map((suggestion, index) => {
                 const IconComponent = suggestion.icon;
                 return (
                   <button
                     key={index}
                     onClick={() => handleSuggestionClick(suggestion.text)}
-                    className={`group p-2 sm:p-3 rounded-lg text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg min-h-[60px] ${
-                      isDarkMode 
-                        ? 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700 hover:border-gray-600 shadow-lg' 
-                        : 'bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-md hover:shadow-xl hover:border-gray-300'
+                    className={`group p-2 rounded-xl text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-md min-h-[48px] ${
+                      isDarkMode
+                        ? 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700 hover:border-gray-600 shadow-sm'
+                        : 'bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300'
                     }`}
                   >
-                    <div className="flex items-center space-x-2 mb-1">
-                      <div className={`p-1.5 rounded-md transition-colors duration-300 ${
-                        isDarkMode 
-                          ? 'bg-gray-700 group-hover:bg-gray-600' 
+                    <div className="flex items-start space-x-2 mb-1">
+                      <div className={`p-1 rounded-md transition-colors duration-300 ${
+                        isDarkMode
+                          ? 'bg-gray-700 group-hover:bg-gray-600'
                           : 'bg-gray-100 group-hover:bg-blue-100'
                       }`}>
-                        <IconComponent size={12} className={`transition-colors duration-300 ${
-                          isDarkMode 
-                            ? 'text-gray-400 group-hover:text-gray-300' 
+                        <IconComponent size={10} className={`transition-colors duration-300 ${
+                          isDarkMode
+                            ? 'text-gray-400 group-hover:text-gray-300'
                             : 'text-gray-600 group-hover:text-blue-600'
                         }`} />
                       </div>
-                      <div className="text-xs sm:text-sm font-semibold">{suggestion.text}</div>
-                    </div>
-                    <div className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>
-                      Click to get started
+                      <div className="flex-1">
+                        <div className="text-xs font-semibold">{suggestion.text}</div>
+                        <div className={`text-[10px] ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>
+                          Click to get started
+                        </div>
+                      </div>
                     </div>
                   </button>
                 );

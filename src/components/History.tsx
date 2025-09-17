@@ -20,7 +20,6 @@ interface HistoryProps {
 
 const History: React.FC<HistoryProps> = ({ isDarkMode, history, activeChat, onClearHistory, onDeleteChat }) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [hoveredChat, setHoveredChat] = useState<string | null>(null);
 
   return (
     <>
@@ -83,22 +82,20 @@ const History: React.FC<HistoryProps> = ({ isDarkMode, history, activeChat, onCl
                           : 'hover:bg-gray-50 border border-gray-200'
                     }`}
                     onClick={() => setIsMobileOpen(false)}
-                    onMouseEnter={() => setHoveredChat(item.id)}
-                    onMouseLeave={() => setHoveredChat(null)}
                   >
-                    {/* Delete button - permanently visible */}
+                    {/* Delete button - only visible on hover */}
                     {onDeleteChat && (
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           onDeleteChat(item.id);
                         }}
-                        className={`absolute top-2 right-2 p-2 rounded-md transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center ${
-                          isDarkMode ? 'bg-gray-700/50 hover:bg-red-600 text-gray-300 hover:text-white' : 'bg-gray-200/50 hover:bg-red-500 text-gray-600 hover:text-white'
+                        className={`absolute top-2 right-2 p-2 rounded-md transition-all duration-200 opacity-0 group-hover:opacity-100 min-h-[36px] min-w-[36px] flex items-center justify-center ${
+                          isDarkMode ? 'hover:text-red-400 text-gray-400' : 'hover:text-red-500 text-gray-500'
                         }`}
                         title="Delete chat"
                       >
-                        <Trash2 size={16} />
+                        <Trash2 size={14} />
                       </button>
                     )}
                     <div className="flex items-center justify-between mb-2 pr-12">
@@ -129,7 +126,7 @@ const History: React.FC<HistoryProps> = ({ isDarkMode, history, activeChat, onCl
       </div>
 
       {/* Desktop History Sidebar */}
-      <div className={`w-80 h-full ${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'} border-r transition-colors duration-300 flex flex-col hidden lg:flex`}>
+      <div className={`w-80 h-full ${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'} border-r transition-colors duration-300 flex-col lg:flex`}>
         <div className={`p-4 border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} h-[73px] flex items-center`}>
           <div className="flex items-center justify-between w-full">
             <h2 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -183,22 +180,20 @@ const History: React.FC<HistoryProps> = ({ isDarkMode, history, activeChat, onCl
                         ? 'hover:bg-gray-800 border border-gray-700' 
                         : 'hover:bg-gray-50 border border-gray-200'
                   }`}
-                  onMouseEnter={() => setHoveredChat(item.id)}
-                  onMouseLeave={() => setHoveredChat(null)}
                 >
-                  {/* Delete button - permanently visible */}
+                  {/* Delete button - only visible on hover */}
                   {onDeleteChat && (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         onDeleteChat(item.id);
                       }}
-                      className={`absolute top-2 right-2 p-2 rounded-md transition-colors duration-200 min-h-[36px] min-w-[36px] flex items-center justify-center ${
-                        isDarkMode ? 'bg-gray-700/50 hover:bg-red-600 text-gray-300 hover:text-white' : 'bg-gray-200/50 hover:bg-red-500 text-gray-600 hover:text-white'
+                      className={`absolute top-2 right-2 p-2 rounded-md transition-all duration-200 opacity-0 group-hover:opacity-100 min-h-[32px] min-w-[32px] flex items-center justify-center ${
+                        isDarkMode ? 'hover:text-red-400 text-gray-400' : 'hover:text-red-500 text-gray-500'
                       }`}
                       title="Delete chat"
                     >
-                      <Trash2 size={16} />
+                      <Trash2 size={12} />
                     </button>
                   )}
                   <div className="flex items-center justify-between mb-1 pr-10">

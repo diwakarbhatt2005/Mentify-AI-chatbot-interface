@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+@media (min-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* Thin scrollbar utilities */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+}
+
+.dark .scrollbar-thumb-gray-600::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+}
+
+.scrollbar-track-transparent::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+input:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+/* Remove default focus outline for textarea specifically */
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Remove all focus outlines from inputs and buttons */
+input:focus,
+button:focus,
+textarea:focus,
+div:focus,
+span:focus,
+p:focus,
+h1:focus,
+h2:focus,
+h3:focus,
+div[class*="bg-gradient-to-br"]:focus,
+div[class*="from-blue-500"]:focus,
+div[class*="to-blue-600"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: inherit !important;
+}
+
+/* Remove blue outlines from user message elements */
+div[class*="bg-gradient-to-br"],
+div[class*="from-blue-500"],
+div[class*="to-blue-600"],
+div[class*="rounded-full"][class*="bg-gradient-to-br"],
+div[class*="rounded-2xl"][class*="bg-gradient-to-br"] {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  border: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+/* Specifically target user message containers */
+.group div[class*="bg-gradient-to-br"][class*="from-blue-500"],
+.group div[class*="rounded-full"][class*="from-blue-500"],
+.group div[class*="rounded-2xl"][class*="from-blue-500"] {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-focus-ring-color: transparent !important;
+}
+
+/* Force remove any webkit focus rings */
+div[class*="gradient"]::-webkit-focus-ring-color,
+div[class*="blue-"]::-webkit-focus-ring-color,
+div[class*="from-blue-500"]::-webkit-focus-ring-color,
+div[class*="to-blue-600"]::-webkit-focus-ring-color {
+  outline: none !important;
+  color: transparent !important;
+}
+
+/* Additional targeting for user message elements */
+*[class*="bg-gradient-to-br"][class*="from-blue-500"],
+*[class*="bg-gradient-to-br"][class*="to-blue-600"] {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Remove any potential webkit outlines */
+div[class*="gradient"]::-webkit-focus-ring-color,
+div[class*="blue-"]::-webkit-focus-ring-color {
+  outline: none !important;
+}
+
+/* Force remove focus styles from message elements */
+div[class*="bg-gradient-to-br"],
+div[class*="rounded-full"],
+div[class*="rounded-2xl"] {
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+/* NUCLEAR OPTION - Remove ALL blue outlines from EVERYTHING */
+/* Remove blue outlines from user message elements */
+.group div[class*="bg-gradient-to-br"][class*="from-blue-500"],
+.group div[class*="bg-gradient-to-br"][class*="to-blue-600"] {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Remove webkit focus rings from gradient elements */
+div[class*="bg-gradient-to-br"]::-webkit-focus-ring-color {
+  outline: none !important;
+  color: transparent !important;
+}
+
+/* Remove focus from gradient backgrounds */
+div[class*="from-blue-500"]:focus,
+div[class*="to-blue-600"]:focus,
+div[class*="bg-gradient-to-br"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Specific targeting for user message bubbles and profile icons */
+.group div[class*="bg-gradient-to-br"][class*="from-blue-500"],
+.group div[class*="rounded-full"][class*="from-gray-"],
+.group div[class*="max-w-fit"] {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Remove all possible focus states from user message elements */
+div[class*="from-blue-500"],
+div[class*="to-blue-600"],
+div[class*="rounded-full"][class*="from-gray-"],
+div[class*="max-w-fit"] {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Force remove webkit outlines */
+*[class*="bg-gradient-to-br"]:focus,
+*[class*="from-blue-500"]:focus,
+*[class*="to-blue-600"]:focus,
+*[class*="rounded-full"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Nuclear option for user message elements */
+div[class*="bg-gradient-to-br"][class*="from-blue-500"],
+div[class*="bg-gradient-to-br"][class*="to-blue-600"],
+*[class*="from-blue-500"],
+*[class*="to-blue-600"] {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-focus-ring-color: transparent !important;
+}
+/* Enhanced backdrop blur support */
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 640px) {
+  .max-w-\[85\%\] {
+    max-width: 90%;
+  }
+  
+  .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 0.5rem;
+  }
+  
+  .p-3 {
+    padding: 1rem;
+  }
+  
+  /* Ensure proper touch targets */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better textarea handling */
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    -webkit-appearance: none;
+  }
+  
+  /* Safe area support */
+  .safe-area-inset-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid.sm\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dynamic viewport height support */
+.min-h-\[100dvh\] {
+  min-height: 100dvh;
+}
+
+.h-\[calc\(100dvh-3\.5rem\)\] {
+  height: calc(100dvh - 3.5rem);
+}
+
+.h-\[calc\(100dvh-4rem\)\] {
+  height: calc(100dvh - 4rem);
+}
+
+/* Fallback for browsers that don't support dvh */
+@supports not (height: 100dvh) {
+  .min-h-\[100dvh\] {
+    min-height: 100vh;
+  }
+  
+  .h-\[calc\(100dvh-3\.5rem\)\] {
+    height: calc(100vh - 3.5rem);
+  }
+  
+  .h-\[calc\(100dvh-4rem\)\] {
+    height: calc(100vh - 4rem);
+  }
+}
+
+/* Enhanced gradient text */
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+
+/* Animation for pulse effect */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Gradient text */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Custom hover effects */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:scale-\[1\.02\]:hover {
+  transform: scale(1.02);
+}
+
+.hover\:scale-110:hover {
+  transform: scale(1.1);
+}
+
+/* Improved mobile touch targets */
+@media (max-width: 640px) {
+  /* Ensure all interactive elements meet accessibility guidelines */
+  button, 
+  [role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  
+  /* Better spacing for mobile */
+  .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.75rem;
+  }
+  
+  /* Improved padding for mobile */
+  .p-4 {
+    padding: 0.75rem;
+  }
+  
+  /* Better text sizing */
+  .text-xs {
+    font-size: 0.75rem;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+}
+
+/* Dark mode support */
+.dark {
+  color-scheme: dark;
+}
+
+/* Custom button animations */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Loading animation for voice input */
+.voice-animation {
+  animation: voice-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes voice-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Smooth height transitions for textarea */
+textarea {
+  transition: height 0.2s ease;
+  min-height: 20px;
+}
+
+/* Better mobile textarea handling */
+textarea {
+  font-size: 16px; /* Prevents zoom on iOS */
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+@media (min-width: 640px) {
+  textarea {
+    font-size: 14px;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Better mobile viewport handling */
+@media (max-width: 640px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Improved focus states for mobile */
+@media (max-width: 640px) {
+  button:focus,
+  input:focus,
+  textarea:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}
+
+/* Better mobile scrolling */
+@media (max-width: 768px) {
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+}
+
+/* Mobile-specific animations */
+@media (max-width: 640px) {
+  .transition-all {
+    transition-duration: 150ms;
+  }
+  
+  .hover\:scale-105:hover {
+    transform: none; /* Disable hover effects on mobile */
+  }
+  
+  .hover\:scale-\[1\.02\]:hover {
+    transform: none;
+  }
+}
+
+/* Active states for mobile */
+@media (max-width: 640px) {
+  .active\:scale-\[0\.98\]:active {
+    transform: scale(0.98);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Custom shadow for floating elements */
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.dark .shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Improved scrolling on mobile */
+@media (max-width: 768px) {
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Better spacing for mobile */
+@media (max-width: 640px) {
+  .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1rem;
+  }
+  
+  .mb-8 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .p-4 {
+    padding: 0.75rem;
+  }
+}
